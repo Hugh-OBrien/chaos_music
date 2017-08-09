@@ -1,0 +1,2 @@
+Requires [audio_shop](https://github.com/robertfoss/audio_shop)
+Requires [neural-style-audio-tf](https://github.com/DmitryUlyanov/neural-style-audio-tf)
