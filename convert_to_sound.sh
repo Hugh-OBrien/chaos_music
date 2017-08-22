@@ -43,14 +43,14 @@ ffmpeg -y -i $1 -pix_fmt rgb24 -vf scale=$RES_COLON tmp.yuv
 
 mv tmp.yuv tmp.u"$BITS"
 # convert to sound with sox
-sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" tmp.u"$BITS" \
-  	--bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" sound.wav
 
 sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" tmp.u"$BITS" \
-  	--bits 16 -c1 -r44100 --encoding unsigned-integer readable.wav
+  	--bits "$BITS" -c1 -r44100 --encoding unsigned-integer readable_sound.wav
 
 echo "Recreate image..."
-sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" sound.wav \
+
+sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer readable_sound.wav \
 		--bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" other_tmp.u"$BITS"
 
-ffmpeg -y -f rawvideo -pix_fmt rgb24 -s $RES -i other_tmp.u"$BITS" recreated.png
+ffmpeg -y -f rawvideo -pix_fmt rgb24 -s $RES -i other_tmp.u"$BITS" other.png
+
