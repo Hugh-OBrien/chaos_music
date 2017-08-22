@@ -25,6 +25,12 @@ function cmdSilent()
     fi
 }
 
+function clean()
+{
+    rm tmp.u8
+		rm other_tmp.u8
+}
+
 function getResolution()
 {
     eval $(cmd ffprobe -v error -of flat=s=_ -select_streams v:0 -show_entries stream=height,width \"$1\")
@@ -54,3 +60,4 @@ sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer readable_sound.wav \
 
 ffmpeg -y -f rawvideo -pix_fmt rgb24 -s $RES -i other_tmp.u"$BITS" other.png
 
+clean 0
