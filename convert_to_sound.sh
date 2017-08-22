@@ -47,7 +47,7 @@ sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" tmp.u"$BI
   	--bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" sound.wav
 
 sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" tmp.u"$BITS" \
-  	readable.wav
+  	--bits 16 -c1 -r44100 --encoding unsigned-integer readable.wav
 
 echo "Recreate image..."
 sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" sound.wav \
