@@ -42,8 +42,11 @@ BITS=8
 RES=${RES:-"$(getResolution "$1" x)"}
 RES_COLON=$(echo "$RES" | tr x :)
 echo $RES
-echo "Extract raw image data..."
 echo $1
+
+### CONVERT IMAGE TO SOUND
+echo "Extract raw image data..."
+
 # convert to yuv colour space
 ffmpeg -y -i $1 -pix_fmt rgb24 -vf scale=$RES_COLON tmp.yuv
 
@@ -53,11 +56,17 @@ mv tmp.yuv tmp.u"$BITS"
 sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" tmp.u"$BITS" \
   	--bits "$BITS" -c1 -r44100 --encoding unsigned-integer readable_sound.wav
 
+### DO THE STYLE TRANSFER
+echo "Doing style transfer.. this will take a while"
+
+python style_transfer.py readable_sound.wav $2
+
+### CREATE AN IMAGE FROM THE OUTPUT
 echo "Recreate image..."
 
-sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer readable_sound.wav \
+sox --bits "$BITS" -c1 -r44100 --encoding unsigned-integer transferred.wav \
 		--bits "$BITS" -c1 -r44100 --encoding unsigned-integer -t u"$BITS" other_tmp.u"$BITS"
 
-ffmpeg -y -f rawvideo -pix_fmt rgb24 -s $RES -i other_tmp.u"$BITS" other.png
+ffmpeg -y -f rawvideo -pix_fmt rgb24 -s $RES -i other_tmp.u"$BITS" styled_image.png
 
 clean 0
