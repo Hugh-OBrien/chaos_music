@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+#
+# USAGE:
+#
+# - Inputs:
+#    1: image
+#    2: sound clip
+#
+
 function cmd()
 {
     OUTPUT=$(eval "$@" 2>&1)
