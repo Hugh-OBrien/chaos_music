@@ -7,6 +7,12 @@
 #    1: image
 #    2: sound clip
 #
+# - Output:
+#    readable_sound.wav : image converted to a sound
+#    transferred.wav : output sound with sound style transferred onto it
+#    styled_image : transferred converted back to an image of same dimensions as original input
+#
+#
 
 function cmd()
 {

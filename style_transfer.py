@@ -1,5 +1,7 @@
 """
-For fetching inputs from bash script
+Mostly based on https://github.com/DmitryUlyanov/neural-style-audio-tf
+
+Called by main bash script
 """
 import sys
 import tensorflow as tf
