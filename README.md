@@ -11,7 +11,7 @@ Converting images into music and using audio style transfer to create chaos...
 
 Trains a neural network using the data so smaller images will be much faster. Depends on Tensorflow configuration
 
-Discussed and explained in this [blog post](http://hugh-obrien.com)
+Discussed and explained in this [blog post](http://hugh-obrien.com/blog/2017/08/28/audio-image-style.html)
 
 Inspired and borrowed from:
 
